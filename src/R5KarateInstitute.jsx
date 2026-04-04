@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import photo1 from "./images/Photo1.webp";
+import photo1 from "./images/photo1.webp";
 import photo2 from "./images/photo2.webp";
 import photo3 from "./images/photo3.webp";
 import photo4 from "./images/grp.jpeg";
