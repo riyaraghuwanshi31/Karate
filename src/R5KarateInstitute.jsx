@@ -31,7 +31,7 @@ const StarIcon = ({ filled }) => (
 );
 
 const reviews = [
-  { name: "Anita Rai", rating: 5, text: "If you are looking for a best karate class for your kids, this is the best & right place to learn. Rinkey Khare mam is the best, experienced and very friendly Coach. Kids are very comfortable with her.", time: "4 weeks ago" },
+  { name: "Anita Rai", rating: 5, text: "If you are looking for a best karate class for your kids, this is the best & right place to learn. Rinky Khare mam is the best, experienced and very friendly Coach. Kids are very comfortable with her.", time: "4 weeks ago" },
   { name: "Ankit Mishra", rating: 5, text: "Karate is one such important physical activity that teaches balance, coordination, and flexibility. Excellent teacher. Rinky mam is very good with kids. She teaches Karate from basics. She is high disciplined and supports child at every step.", time: "4 weeks ago" },
   { name: "Ganesh Pawar", rating: 5, text: "Great martial arts and karate classes. The instructors are skilled, patient, and very supportive. The training helps build discipline, confidence, and fitness. Highly recommended for both beginners and experienced students.", time: "4 weeks ago" },
   { name: "Aarti Patil", rating: 5, text: "A very interesting and fantastic class. My daughters have become very disciplined and strong ever since they joined the class. Rinky ma'am is both friendly and experienced. Learning with her is really fun.", time: "4 weeks ago" },
@@ -443,7 +443,7 @@ export default function R5KarateLanding() {
               </p>
               <div style={{ marginTop: 28, paddingTop: 28, borderTop: "1px solid #2a2a2a" }}>
                 <div className="cinzel" style={{ fontSize: 12, letterSpacing: 2, color: "#666" }}>HEAD COACH</div>
-                <div className="crimson" style={{ fontSize: 20, color: "#f0ede6", marginTop: 4 }}>Sensei Rinkey Khare</div>
+                <div className="crimson" style={{ fontSize: 20, color: "#f0ede6", marginTop: 4 }}>Sensei Rinky Khare</div>
                 <div style={{ fontSize: 13, color: "#888", marginTop: 4 }}>Certified Funakoshi Shotokan Karate Instructor</div>
               </div>
             </div>
