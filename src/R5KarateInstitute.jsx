@@ -104,6 +104,56 @@ export default function R5KarateLanding() {
         .cinzel { font-family: 'Cinzel', serif; }
         .crimson { font-family: 'Crimson Text', serif; }
 
+        /* Desktop vs Mobile */
+.desktop-menu {
+  display: flex;
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  right: 0;
+  background: #0a0a0a;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 16px;
+  border-top: 1px solid #222;
+  z-index: 99;
+}
+
+.mobile-menu button {
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 16px;
+  text-align: left;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .desktop-menu {
+    display: none !important;
+  }
+
+  .desktop-cta {
+    display: none !important;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+}
         @keyframes fadeUp {
           from { opacity: 0; transform: translateY(40px); }
           to { opacity: 1; transform: translateY(0); }
@@ -134,6 +184,16 @@ export default function R5KarateLanding() {
         .hero-text-delay2 { animation: fadeUp 1s ease 0.6s both; }
         .hero-btn { animation: fadeUp 1s ease 0.9s both; }
 
+        @media (max-width: 768px) {
+  .hero-title {
+    line-height: 1.2 !important;
+  }
+
+  .badge {
+    font-size: 10px;
+    padding: 4px 10px;
+  }
+}
         .cta-btn {
           background: linear-gradient(135deg, #b41414, #8b0000);
           color: #fff;
@@ -309,7 +369,7 @@ export default function R5KarateLanding() {
       `}</style>
 
       {/* NAV */}
-      <nav style={{
+      {/* <nav style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
         background: scrollY > 60 ? "rgba(8,8,8,0.97)" : "transparent",
         backdropFilter: scrollY > 60 ? "blur(12px)" : "none",
@@ -317,6 +377,20 @@ export default function R5KarateLanding() {
         transition: "all 0.4s ease",
         padding: "0 40px",
         display: "flex", alignItems: "center", justifyContent: "space-between", height: "70px"
+      }}> */}
+      <nav style={{
+        position: "fixed",
+        top: 0, left: 0, right: 0,
+        zIndex: 100,
+        background: scrollY > 60 ? "rgba(8,8,8,0.97)" : "transparent",
+        backdropFilter: scrollY > 60 ? "blur(12px)" : "none",
+        borderBottom: scrollY > 60 ? "1px solid #1a1a1a" : "none",
+        transition: "all 0.4s ease",
+        padding: "0 20px", // ✅ reduced for mobile
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        height: "70px"
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <div style={{
@@ -326,15 +400,36 @@ export default function R5KarateLanding() {
           }}>R5</div>
           <span className="cinzel" style={{ fontSize: 14, letterSpacing: 3, color: "#f0ede6" }}>MARTIAL ARTS</span>
         </div>
-        <div style={{ display: "flex", gap: 32 }}>
+        {/* <div style={{ display: "flex", gap: 32 }}> */}
+        <div className="desktop-menu" style={{ display: "flex", gap: 32 }}>
           {["about", "features", "gallery", "reviews", "contact"].map(s => (
             <button key={s} className="nav-link" onClick={() => scrollTo(s)}>{s}</button>
           ))}
         </div>
-        <button className="cta-btn" style={{ padding: "10px 24px", fontSize: 11, animation: "none" }} onClick={() => scrollTo("contact")}>
+        <button
+          className="mobile-menu-btn"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          ☰
+        </button>
+        <button
+          className="cta-btn desktop-cta"
+          style={{ padding: "10px 24px", fontSize: 11, animation: "none" }}
+          onClick={() => scrollTo("contact")}
+        >
           Join Now
         </button>
       </nav>
+
+      {menuOpen && (
+        <div className="mobile-menu">
+          {["about", "features", "gallery", "reviews", "contact"].map(s => (
+            <button key={s} onClick={() => scrollTo(s)}>
+              {s}
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* HERO */}
       <section ref={heroRef} style={{
@@ -342,7 +437,8 @@ export default function R5KarateLanding() {
         background: "linear-gradient(135deg, #000 0%, #0d0005 40%, #0a0000 70%, #000 100%)",
         display: "flex", alignItems: "center",
         position: "relative", overflow: "hidden",
-        padding: "120px 60px 80px"
+        // padding: "120px 60px 80px"
+        padding: "120px 20px 60px"
       }}>
         {/* Decorative elements */}
         <div style={{ position: "absolute", top: "15%", right: "8%", fontSize: 180, opacity: 0.1, fontFamily: "serif", color: "#b41414", userSelect: "none" }}>武</div>
@@ -366,7 +462,7 @@ export default function R5KarateLanding() {
           <div className="badge hero-text">★ INDORE'S PREMIER KARATE INSTITUTE ★</div>
 
           <h1 className="cinzel hero-title hero-text-delay" style={{
-            fontSize: 64, fontWeight: 900, lineHeight: 1.05,
+            fontSize: "clamp(28px, 6vw, 64px)", fontWeight: 900, lineHeight: 1.05,
             marginBottom: 24, letterSpacing: 2
           }}>
             <span className="shimmer-text">R5 MARTIAL ARTS</span>
@@ -376,7 +472,7 @@ export default function R5KarateLanding() {
 
           <p className="crimson hero-text-delay2" style={{
             fontSize: 20, lineHeight: 1.8, color: "#aaa",
-            maxWidth: 560, marginBottom: 40
+            maxWidth: "100%", marginBottom: 40
           }}>
             Where discipline meets excellence. Professional karate training for kids, teens, and adults in Mahalaxmi Nagar, Indore — forging champions since day one.
           </p>
@@ -390,7 +486,12 @@ export default function R5KarateLanding() {
             </button>
           </div>
 
-          <div style={{ display: "flex", gap: 48, marginTop: 64 }}>
+          <div style={{
+            display: "flex",
+            gap: 24,
+            marginTop: 40,
+            flexWrap: "wrap" // ✅ key fix
+          }}>
             {[["4.8★", "Google Rating"], ["8+", "Reviews"], ["2", "Branches"], ["All Ages", "Welcome"]].map(([val, label]) => (
               <div key={label}>
                 <div className="cinzel" style={{ fontSize: 26, fontWeight: 700, color: "#b41414" }}>{val}</div>
@@ -590,12 +691,12 @@ export default function R5KarateLanding() {
         <div className="section-line" />
         {/* <div className="grid-2" style={{ gap: 60, alignItems: "start" }}> */}
         <div style={{
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  textAlign: "center",
-  gap: 40
-}}>
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          textAlign: "center",
+          gap: 40
+        }}>
           <div>
             <h2 className="cinzel" style={{ fontSize: 42, fontWeight: 700, marginBottom: 24, lineHeight: 1.2 }}>
               Begin Your <span style={{ color: "#b41414" }}>Journey</span><br />Today
@@ -640,7 +741,7 @@ export default function R5KarateLanding() {
                 </div>
               </div>
 
-              
+
             </div>
           </div>
 
